@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.3.0",
+    "color-name": "^2.0.0",
+    "color-string": "^1.9.1",
     "randomcolor": "^0.6.2",
     "typescript": "^5.4.5"
   },

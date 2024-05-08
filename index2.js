@@ -1,6 +1,7 @@
 import { argv } from 'node:process';
 
 import chalk from 'chalk';
+import parse from 'parse-color';
 import randomColor from 'randomcolor';
 
 const userInput1 = argv[2];
@@ -50,14 +51,24 @@ const onlyRandomColor = () => {
 // node index.js ask
 
 const askStyle = chalk.italic.yellow;
-const askText = `Please type color name and luminosity after 'node index.js'!`;
+const askText = `Please type color name and/or luminosity after 'node index.js'!`;
 
-const showAsk = (color) => {
-  color = askStyle;
+const showAsk = () => {
   console.log(askStyle(askText));
 }
 
+// TODO
+// later add WWxHH and lum
 const oneInput = (input) => {
+  if(!parse(input)) {
+    showAsk();
+  }
+  else{
+    const hex = parse(input);
+defaultBox.color = hex.hex;
+defaultBox.text = chalk.hex(hex.hex)(hex.hex);
+createBox(defaultBox)
+  }
 }
 
 const twoInputs = (input1, input2) => {
@@ -68,9 +79,16 @@ const threeInputs = (input1, input2, input3) => {
 
 // reading user inputs
   if (!userInput1)
-    {onlyRandomColor()
-
+    {
+    onlyRandomColor()
     }
-  if (userInput1 === 'ask') {
-  showAsk(askStyle);
-}
+    else if (userInput1 === 'ask') {
+      showAsk();
+    }
+
+    else{
+    oneInput(userInput1);
+  
+  }
+
+// oneInput(userInput1)

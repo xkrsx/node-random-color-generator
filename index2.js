@@ -60,7 +60,7 @@ const showAsk = () => {
 // TODO
 // later add WWxHH and lum
 const oneInput = (input) => {
-  if(!parse(input)) {
+  if(parse(input).hex === undefined) {
     showAsk();
   }
   else{
@@ -72,6 +72,7 @@ createBox(defaultBox)
 }
 
 const twoInputs = (input1, input2) => {
+
 }
 
 const threeInputs = (input1, input2, input3) => {

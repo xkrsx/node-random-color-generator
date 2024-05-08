@@ -14,8 +14,32 @@ const boxSides = 5;
 const boxFrame = 3;
 const boxSpace = boxWidth - 2 * boxSides;
 
-let fontColor = randomColor();
+const generateFontColor = (userInput, userInput2 ) => {
 
+  let fontColor;
+let box;
+
+if (!userInput && !userInput2) {
+  fontColor = randomColor();
+  
+}
+ if (userInput || userInput2 === 'ask') {
+// console.log(askStyle(askText));
+}
+// if (userInput && !userInput2) {
+//   const createUserColorBox = (userInput) => {
+//     fontColor = randomColor({hue: userInput})
+//    console.log(chalk.hex(fontColor)(box))
+//   }
+//   createUserColorBox(hueFromUser)
+// }
+// if (!userInput && userInput2) {
+//   const createUserColorBox = (userInput2) => {
+//     fontColor = randomColor({luminosity: userInput})
+//    console.log(chalk.hex(fontColor)(box))
+//   }
+//   createUserColorBox(luminosityFromUser)
+// }
 const colorfulHashtag = chalk.hex(fontColor)('#');
 const boxSingleSpace = ' ';
 const boxTopBottom = `${colorfulHashtag.repeat(boxWidth)}\n`.repeat(boxFrame);
@@ -30,21 +54,10 @@ const boxText = `${(colorfulHashtag.repeat(boxSides)
   + boxSingleSpace.repeat((boxSpace - fontColor.length) / 2)
   + colorfulHashtag.repeat(boxSides))}\n`;
 
-const box = boxTopBottom + boxSide + boxText + boxSide + boxTopBottom;
-
-// if (!hueFromUser && !luminosityFromUser) {
-//   console.log(chalk.hex(fontColor)(box));
-// }
-//  else if (hueFromUser || luminosityFromUser === 'ask') {
-// console.log(askStyle(askText));
-// }
-
-if (hueFromUser) {
-
-  const createUserColorBox = (userInput) => {
-    fontColor = randomColor({hue: userInput})
-    
-   console.log(chalk.hex('red')(box))
+box = boxTopBottom + boxSide + boxText + boxSide + boxTopBottom;
+console.log(chalk.hex(fontColor)(box));
 }
-createUserColorBox(hueFromUser)
-}
+generateFontColor(hueFromUser, luminosityFromUser);
+
+
+

@@ -58,6 +58,7 @@ const showAsk = () => {
 }
 
 // TODO
+// fix color name in the box
 // later add WWxHH and lum
 const oneInput = (input) => {
   if(parse(input).hex === undefined) {

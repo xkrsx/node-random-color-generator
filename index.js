@@ -57,47 +57,44 @@ console.log(chalk.hex(getColor)(newBox));
 // user can require luminosity
 // luminosity range: 0-100
 const twoInputs = (input1, input2) => {
-
-  //node index.js <color>
-  if (parse(input1).hex){
-    const hex = parse(input1);
-  createBox(defaultBox, hex.hex)
-  }
-
-  //node index.js <WWxHH> + randomColor
-  else if(input1.includes('x') && input1[2] === 'x' && input1.length === 5){
-    if(input2 === undefined) {
+  if(input1.includes('x') && input1[2] === 'x' && input1.length === 5){
     defaultBox.boxWidth = input1.slice(0, 2);
     defaultBox.boxHeight = input1.slice(3, 5);
-    onlyRandomColor();
-}
 
-    //2. if: WWxHH + <user color> to the box
+    //<WWxHH> + randomColor function
+    if(input2 === undefined) {
+    onlyRandomColor();
+  }
+  //<WWxHH> + <user color> function
+  else if (parse(input2).hex){
+    const hex = parse(input2);
+  createBox(defaultBox, hex.hex)
+  }
+    
     //3. if: WWxHH + <luminosity> + randomColor() to the box
     //4. if: WWxHH + <luminosity> + <user color>
   }
-
-  else if(input1 === 'light' || 'dark'){
-    if(input1 === 'light'){
-      //luminosity random number 0-50
-    } else {
-      //luminosity random number 51-100
-    }
-    //+ randomColor()
+  // node index.js <color>
+ else if (parse(input1).hex){
+    const hex = parse(input1);
+  createBox(defaultBox, hex.hex)
+  }
+  
+  else {
+    showAsk();
   }
 }
 
 const threeInputs = (input1, input2, input3) => {
 }
 
-// node index.js
+//random color function
 const onlyRandomColor = () => {
   const newColor = randomColorFunction;
   createBox(defaultBox, newColor);
 }
 
-// node index.js ask
-
+// ask/unknown command function
 const askStyle = chalk.italic.yellow;
 const askText = `Unknown command. Please use one of the following commands after 'node.js':
 - <no input> prints box in a random color with its hex name inside,
@@ -117,10 +114,6 @@ const showAsk = () => {
     else if (userInput1 === 'ask') {
       showAsk();
     }
-    else if(parse(userInput1).hex === undefined) {
-      showAsk();
-    }
     else{
       twoInputs(userInput1, userInput2);
-  
-  }
+  };

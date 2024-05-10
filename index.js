@@ -54,24 +54,29 @@ console.log(chalk.hex(getColor)(newBox));
 }
 
 // TODO
-// user can add WWxHH to change box size or luminosity
+// user can require luminosity
 // luminosity range: 0-100
 const twoInputs = (input1, input2) => {
-  if(input1.includes('x') && input1[2] === 'x' && input1.length === 5){
+
+  //node index.js <color>
+  if (parse(input1).hex){
+    const hex = parse(input1);
+  createBox(defaultBox, hex.hex)
+  }
+
+  //node index.js <WWxHH> + randomColor
+  else if(input1.includes('x') && input1[2] === 'x' && input1.length === 5){
+    if(input2 === undefined) {
     defaultBox.boxWidth = input1.slice(0, 2);
     defaultBox.boxHeight = input1.slice(3, 5);
     onlyRandomColor();
+}
 
     //2. if: WWxHH + <user color> to the box
     //3. if: WWxHH + <luminosity> + randomColor() to the box
     //4. if: WWxHH + <luminosity> + <user color>
-  } else if(parse(input1).hex === undefined) {
-    showAsk();
   }
-  else if (parse(input1).hex){
-    const hex = parse(input1);
-  createBox(defaultBox, hex.hex)
-  }
+
   else if(input1 === 'light' || 'dark'){
     if(input1 === 'light'){
       //luminosity random number 0-50
@@ -112,7 +117,10 @@ const showAsk = () => {
     else if (userInput1 === 'ask') {
       showAsk();
     }
+    else if(parse(userInput1).hex === undefined) {
+      showAsk();
+    }
     else{
-      twoInputs(userInput1);
+      twoInputs(userInput1, userInput2);
   
   }

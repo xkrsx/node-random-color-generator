@@ -4,14 +4,16 @@ import chalk from 'chalk';
 import parse from 'parse-color';
 import randomColor from 'randomcolor';
 
+let randomColorFunction = randomColor();
+
 const userInput1 = argv[2];
 const userInput2 = argv[3];
 const userInput3 = argv[4];
 
-let color = randomColor();
-
 const defaultBox = {
   spaceChar: ' ',
+  text: '',
+  color: '',
   hashtagChar: '#',
   topBottomWidth: 31,
   topBottomHeight: 3,
@@ -19,33 +21,52 @@ const defaultBox = {
   textSpace: 7,
 }
 
-const createBox = (defaultBox) => {
-  defaultBox.text = chalk.hex(color)(color);
+const createBox = (getBox, getColor) => {
 
-  defaultBox.hashtagChar = chalk.hex(defaultBox.color)('#');
+    getBox.text = chalk.hex(getColor)(getColor);
 
-  const boxTopBottom = `${defaultBox.hashtagChar.repeat(defaultBox.topBottomWidth)}\n`.repeat(defaultBox.topBottomHeight);
+  getBox.hashtagChar = chalk.hex(getColor)(getBox.hashtagChar);
 
-  const boxMiddle = `${(defaultBox.hashtagChar.repeat(defaultBox.sideBorder)
+  const boxTopBottom = `${getBox.hashtagChar.repeat(getBox.topBottomWidth)}\n`.repeat(getBox.topBottomHeight);
+
+  const boxMiddle = `${(getBox.hashtagChar.repeat(getBox.sideBorder)
   + defaultBox.spaceChar.repeat(defaultBox.topBottomWidth - 2 * defaultBox.sideBorder)
-  + defaultBox.hashtagChar.repeat(defaultBox.sideBorder))}\n`;
+  + getBox.hashtagChar.repeat(getBox.sideBorder))}\n`;
 
-  const boxText = `${(defaultBox.hashtagChar.repeat(defaultBox.sideBorder)
+  const boxText = `${(getBox.hashtagChar.repeat(getBox.sideBorder)
   + defaultBox.spaceChar.repeat(defaultBox.textSpace)
-  + chalk.hex(color)(color)
+  + chalk.hex(getColor)(getColor)
   + defaultBox.spaceChar.repeat(defaultBox.textSpace)
-  + defaultBox.hashtagChar.repeat(defaultBox.sideBorder))}\n`;
+  + getBox.hashtagChar.repeat(getBox.sideBorder))}\n`;
 
-const box = boxTopBottom + boxMiddle + boxText + boxMiddle + boxTopBottom;
-console.log(chalk.hex(color)(box));
+const newBox = boxTopBottom + boxMiddle + boxText + boxMiddle + boxTopBottom;
+console.log(chalk.hex(getColor)(newBox));
+}
+
+// TODO
+// later add WWxHH and lum
+const oneInput = (input) => {
+  if(parse(input).hex === undefined) {
+    showAsk();
+  }
+  else{
+    const hex = parse(input);
+createBox(defaultBox, hex.hex)
+  }
+}
+
+const twoInputs = (input1, input2) => {
+
+}
+
+const threeInputs = (input1, input2, input3) => {
 }
 
 // node index.js
 
 const onlyRandomColor = () => {
-  defaultBox.topBottomHeight = 3;
-  defaultBox.color = color;
-  createBox(defaultBox);
+  const newColor = randomColorFunction;
+  createBox(defaultBox, newColor);
 }
 
 // node index.js ask
@@ -57,29 +78,7 @@ const showAsk = () => {
   console.log(askStyle(askText));
 }
 
-// TODO
-// fix color name in the box
-// later add WWxHH and lum
-const oneInput = (input) => {
-  if(parse(input).hex === undefined) {
-    showAsk();
-  }
-  else{
-    const hex = parse(input);
-defaultBox.color = hex.hex;
-defaultBox.text = chalk.hex(hex.hex)(hex.hex);
-createBox(defaultBox)
-  }
-}
-
-const twoInputs = (input1, input2) => {
-
-}
-
-const threeInputs = (input1, input2, input3) => {
-}
-
-// reading user inputs
+// node index.js <color>
   if (!userInput1)
     {
     onlyRandomColor()
@@ -92,5 +91,3 @@ const threeInputs = (input1, input2, input3) => {
     oneInput(userInput1);
   
   }
-
-// oneInput(userInput1)

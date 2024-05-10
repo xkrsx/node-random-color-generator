@@ -8,13 +8,13 @@
 
 
 #### Color formats:
-- rgb - an array of [ red, green, blue ]
-- hsl - an array of [ hue, saturation, luminosity ]
-- hsv - an array of [ hue, saturation, value ]
-- cmyk - an array of [ cyan, magenta, yellow, black ]
-- keyword - the name of the color, if known
-- hex - the hex rgb string #rrggbb
-- rgba - rgb plus an alpha value from 0 to 1, - inclusive
-- hsla - hsl plus an alpha value from 0 to 1, - inclusive
-- hsva - hsv plus an alpha value from 0 to 1, - inclusive
-- cmyka - cmyk plus an alpha value from 0 to 1, inclusive
+- `rgb` - an array of [ red, green, blue ]
+- `hsl` - an array of [ hue, saturation, luminosity ]
+- `hsv` - an array of [ hue, saturation, value ]
+- `cmyk` - an array of [ cyan, magenta, yellow, black ]
+- `keyword` - the name of the color, if known
+- `hex` - the hex rgb string #rrggbb
+- `rgba` - rgb plus an alpha value from 0 to 1, - inclusive
+- `hsla` - hsl plus an alpha value from 0 to 1, - inclusive
+- `hsva` - hsv plus an alpha value from 0 to 1, - inclusive
+- `cmyka` - cmyk plus an alpha value from 0 to 1, inclusive

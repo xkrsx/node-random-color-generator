@@ -5,6 +5,7 @@
 - `node index.js ask` prints a help line, telling user to type correct commands;
 - `node index.js <color>` prints a default box with specified color (see color formats below) its hex code inside;
 - `node index.js <WWxHH>` prints a box of specified size in a random color;
+- `node index.js <WWxHH color>` prints a box of specified size in a specified color;
 - `node index.js <incorrect input>` prints a help line;
 
 

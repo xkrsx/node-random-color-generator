@@ -5,6 +5,7 @@ import parse from 'parse-color';
 import randomColor from 'randomcolor';
 
 let randomColorFunction = randomColor();
+// let newColor = randomColorFunction;
 
 const userInput1 = argv[2];
 const userInput2 = argv[3];
@@ -67,7 +68,7 @@ const threeInputs = (input1, input2, input3) => {
 
     //<WWxHH> + randomColor function
     if(input2 === undefined) {
-    onlyRandomColor();
+      randomColorBox();
   }
   //<WWxHH> + <user color> function
   else if (parse(input2).hex){
@@ -80,13 +81,19 @@ const threeInputs = (input1, input2, input3) => {
     //adds random number to luminosity parameter - WORKS
     //combine luminosity value to modify printed color
   else if (input1 === 'light' || input1 === 'dark') {
+let newColorAndLuminosity = randomColorFunction;
   if (input1 === 'light'){
-        defaultBox.luminosity = randomLuminosity(1, 50)
+        defaultBox.luminosity = randomLuminosity(1, 50);
+        createBox(defaultBox, newColorAndLuminosity);
+
       }
   else if (input1 === 'dark'){
-        defaultBox.luminosity = randomLuminosity(51, 100);
+      defaultBox.luminosity = randomLuminosity(51, 100);
+      defaultBox.text = `Luminosity: ${defaultBox.luminosity}`;
+        createBox(defaultBox, newColorAndLuminosity);
       }
-      onlyRandomColor();
+      console.log(defaultBox.text);
+
     }
 //TODO
       //3. if: WWxHH + <luminosity> + randomColor()
@@ -108,9 +115,8 @@ const threeInputs = (input1, input2, input3) => {
 const randomLuminosity = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 //random color function
-const onlyRandomColor = () => {
-  const newColor = randomColorFunction;
-  createBox(defaultBox, newColor);
+const randomColorBox = () => {
+  createBox(defaultBox, randomColorFunction);
 }
 
 // ask/unknown command function
@@ -128,7 +134,7 @@ const showAsk = () => {
 // node index.js <input>/<input>/<input>
   if (!userInput1)
     {
-    onlyRandomColor()
+      randomColorBox()
     }
     else if (userInput1 === 'ask') {
       showAsk();

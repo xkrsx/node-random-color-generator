@@ -21,12 +21,14 @@ const defaultBox = {
   textSpace: 7,
   boxWidth: null,
   boxHeight: null,
+  luminosity: null,
 }
 
+//TODO
+//combine luminosity into color settings
 const createBox = (getBox, getColor) => {
 
-    getBox.text = chalk.hex(getColor)(getColor);
-
+  getBox.text = chalk.hex(getColor)(getColor);
   getBox.hashtagChar = chalk.hex(getColor)(getBox.hashtagChar);
 
   let newBox;
@@ -55,8 +57,10 @@ console.log(chalk.hex(getColor)(newBox));
 
 // TODO
 // user can require luminosity
+// luminosity setting go to hsl format
+// combine hex and hsl formats before print
 // luminosity range: 0-100
-const twoInputs = (input1, input2) => {
+const threeInputs = (input1, input2, input3) => {
   if(input1.includes('x') && input1[2] === 'x' && input1.length === 5){
     defaultBox.boxWidth = input1.slice(0, 2);
     defaultBox.boxHeight = input1.slice(3, 5);
@@ -70,10 +74,25 @@ const twoInputs = (input1, input2) => {
     const hex = parse(input2);
   createBox(defaultBox, hex.hex)
   }
-    
-    //3. if: WWxHH + <luminosity> + randomColor() to the box
-    //4. if: WWxHH + <luminosity> + <user color>
   }
+    //2. if: <luminosity> + randomColor()
+    //TODO
+    //adds random number to luminosity parameter - WORKS
+    //combine luminosity value to modify printed color
+  else if (input1 === 'light' || input1 === 'dark') {
+  if (input1 === 'light'){
+        defaultBox.luminosity = randomLuminosity(1, 50)
+      }
+  else if (input1 === 'dark'){
+        defaultBox.luminosity = randomLuminosity(51, 100);
+      }
+      onlyRandomColor();
+    }
+//TODO
+      //3. if: WWxHH + <luminosity> + randomColor()
+    //4. if: WWxHH + <luminosity> + <user color>
+
+
   // node index.js <color>
  else if (parse(input1).hex){
     const hex = parse(input1);
@@ -85,8 +104,8 @@ const twoInputs = (input1, input2) => {
   }
 }
 
-const threeInputs = (input1, input2, input3) => {
-}
+//random luminosity function
+const randomLuminosity = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 //random color function
 const onlyRandomColor = () => {
@@ -115,5 +134,5 @@ const showAsk = () => {
       showAsk();
     }
     else{
-      twoInputs(userInput1, userInput2);
+      threeInputs(userInput1, userInput2, userInput3);
   };

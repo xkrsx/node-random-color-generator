@@ -1,63 +1,93 @@
 import { argv } from 'node:process';
 
 import chalk from 'chalk';
+import parse from 'parse-color';
 import randomColor from 'randomcolor';
 
-const hueFromUser = argv[2];
-const luminosityFromUser = argv[3];
+let randomColorFunction = randomColor();
+
+const userInput1 = argv[2];
+const userInput2 = argv[3];
+const userInput3 = argv[4];
+
+const defaultBox = {
+  spaceChar: ' ',
+  text: '',
+  color: '',
+  hashtagChar: '#',
+  topBottomWidth: 31,
+  topBottomHeight: 3,
+  sideBorder: 5,
+  textSpace: 7,
+}
+
+const createBox = (getBox, getColor) => {
+
+    getBox.text = chalk.hex(getColor)(getColor);
+
+  getBox.hashtagChar = chalk.hex(getColor)(getBox.hashtagChar);
+
+  const boxTopBottom = `${getBox.hashtagChar.repeat(getBox.topBottomWidth)}\n`.repeat(getBox.topBottomHeight);
+
+  const boxMiddle = `${(getBox.hashtagChar.repeat(getBox.sideBorder)
+  + defaultBox.spaceChar.repeat(defaultBox.topBottomWidth - 2 * defaultBox.sideBorder)
+  + getBox.hashtagChar.repeat(getBox.sideBorder))}\n`;
+
+  const boxText = `${(getBox.hashtagChar.repeat(getBox.sideBorder)
+  + defaultBox.spaceChar.repeat(defaultBox.textSpace)
+  + chalk.hex(getColor)(getColor)
+  + defaultBox.spaceChar.repeat(defaultBox.textSpace)
+  + getBox.hashtagChar.repeat(getBox.sideBorder))}\n`;
+
+const newBox = boxTopBottom + boxMiddle + boxText + boxMiddle + boxTopBottom;
+console.log(chalk.hex(getColor)(newBox));
+}
+
+// TODO
+// later add WWxHH and lum
+const oneInput = (input) => {
+  if(parse(input).hex === undefined) {
+    showAsk();
+  }
+  else{
+    const hex = parse(input);
+createBox(defaultBox, hex.hex)
+  }
+}
+
+const twoInputs = (input1, input2) => {
+
+}
+
+const threeInputs = (input1, input2, input3) => {
+}
+
+// node index.js
+
+const onlyRandomColor = () => {
+  const newColor = randomColorFunction;
+  createBox(defaultBox, newColor);
+}
+
+// node index.js ask
 
 const askStyle = chalk.italic.yellow;
-const askText = `Please type color name and luminosity after 'node index.js'!`;
+const askText = `Please type color name and/or luminosity after 'node index.js'!`;
 
-const boxWidth = 31;
-const boxSides = 5;
-const boxFrame = 3;
-const boxSpace = boxWidth - 2 * boxSides;
+const showAsk = () => {
+  console.log(askStyle(askText));
+}
 
-const generateFontColor = (userInput, userInput2 ) => {
+// node index.js <color>
+  if (!userInput1)
+    {
+    onlyRandomColor()
+    }
+    else if (userInput1 === 'ask') {
+      showAsk();
+    }
 
-  let fontColor;
-let box;
-
-if (!userInput && !userInput2) {
-  fontColor = randomColor();
+    else{
+    oneInput(userInput1);
   
-}
- if (userInput || userInput2 === 'ask') {
-// console.log(askStyle(askText));
-}
-// if (userInput && !userInput2) {
-//   const createUserColorBox = (userInput) => {
-//     fontColor = randomColor({hue: userInput})
-//    console.log(chalk.hex(fontColor)(box))
-//   }
-//   createUserColorBox(hueFromUser)
-// }
-// if (!userInput && userInput2) {
-//   const createUserColorBox = (userInput2) => {
-//     fontColor = randomColor({luminosity: userInput})
-//    console.log(chalk.hex(fontColor)(box))
-//   }
-//   createUserColorBox(luminosityFromUser)
-// }
-const colorfulHashtag = chalk.hex(fontColor)('#');
-const boxSingleSpace = ' ';
-const boxTopBottom = `${colorfulHashtag.repeat(boxWidth)}\n`.repeat(boxFrame);
-
-const boxSide = `${(colorfulHashtag.repeat(boxSides)
-  + boxSingleSpace.repeat(boxSpace)
-  + colorfulHashtag.repeat(boxSides))}\n`;
-
-const boxText = `${(colorfulHashtag.repeat(boxSides)
-  + boxSingleSpace.repeat((boxSpace - fontColor.length) / 2)
-  + chalk.hex(fontColor)(fontColor)
-  + boxSingleSpace.repeat((boxSpace - fontColor.length) / 2)
-  + colorfulHashtag.repeat(boxSides))}\n`;
-
-box = boxTopBottom + boxSide + boxText + boxSide + boxTopBottom;
-console.log(chalk.hex(fontColor)(box));
-}
-generateFontColor(hueFromUser, luminosityFromUser);
-
-
-
+  }

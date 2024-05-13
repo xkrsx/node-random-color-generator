@@ -178,8 +178,4 @@ const showCombine = () => {
     else{
       threeInputs(userInput1, userInput2, userInput3);
   };
-
-      //TODO
-    //console.log only for test
-    //delete before deployment
-    console.log(defaultBox);
+  

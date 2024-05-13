@@ -1,15 +1,18 @@
 # Node.js Random Color Generator
 
 ### A simple Node.js command line App printing a colorful box of hashtags in Terminal:
-- `node index.js` prints a default box with random color and its hex code inside;
-- `node index.js ask` prints a help line, telling user to type correct commands;
-- `node index.js <color>` prints a default box with specified color (see color formats below) and its hex code inside;
-- `node index.js <WWxHH>` prints a box of specified size in a random color;
-- `node index.js <WWxHH color>` prints a box of specified size in a specified color;
-- `node index.js <luminosity>` prints a box in a random color with specified luminosity `WORK IN PROGRESS`;
-- `node index.js <WWxHH luminosity>` prints a box in a random color with specified luminosity `WORK IN PROGRESS`;
-- `node index.js <WWxHH luminosity color>` prints a box in a specified color with specified luminosity `WORK IN PROGRESS`;
-- `node index.js <incorrect input>` prints a help line;
+- `node index.js` prints a default size box in a random color and its hex code inside;
+- `node index.js <color>` prints a default size box in a specified color (see color formats below) and its hex code inside;
+- `node index.js <light/dark/bright>` prints a default size box in a random color in a specified luminosity with its hex name inside and luminosity input underneath;
+- `node index.js <light/dark/bright> <color>` prints a default size box in a specified color in a specified luminosity with its hex name inside and luminosity input underneath;
+- `node index.js <WWxHH>` prints a box of specified size (eg. 02x20) in a random color;
+- `node index.js <WWxHH color>` prints a box of specified size (eg. 02x20) in a specified color;
+- `node index.js <WWxHH luminosity>` prints a box of specified size (eg. 02x20) in a random color in a specified luminosity and its input underneath;
+- `node index.js <WWxHH luminosity color>` prints a box of specified size (eg. 02x20) in a specified color in a specified luminosity and its input underneath;
+
+- `node index.js <incorrect input>` prints a list of possible commands;
+- `node index.js ask` prints a list of possible commands;
+- `node index.js combine` prints a list of possible command combinations;
 
 
 #### Color formats:

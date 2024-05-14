@@ -24,6 +24,12 @@ importers:
       '@types/node':
         specifier: ^20.12.10
         version: 20.12.10
+      '@types/parse-color':
+        specifier: ^1.0.3
+        version: 1.0.3
+      '@types/randomcolor':
+        specifier: ^0.5.9
+        version: 0.5.9
       eslint-config-upleveled:
         specifier: ^8.1.0
         version: 8.1.0(@babel/core@7.24.5)(@types/eslint@8.56.10)(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.1)(eslint@8.57.0)(globals@13.24.0)(typescript@5.4.5)
@@ -280,11 +286,17 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
+  '@types/parse-color@1.0.3':
+    resolution: {integrity: sha512-1zpnjrXCl0KklQOtMDDXhqQN9ouePkt4NBoAJ/dRjyMqWMkegyIqeZUOf3Xq4yaUPPdY8wmR8cye/D9v1kcrsQ==}
+
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+
+  '@types/randomcolor@0.5.9':
+    resolution: {integrity: sha512-k58cfpkK15AKn1m+oRd9nh5BnuiowhbyvBBdAzcddtARMr3xRzP0VlFaAKovSG6N6Knx08EicjPlOMzDejerrQ==}
 
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
@@ -2586,9 +2598,13 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
+  '@types/parse-color@1.0.3': {}
+
   '@types/parse-json@4.0.2': {}
 
   '@types/prop-types@15.7.12': {}
+
+  '@types/randomcolor@0.5.9': {}
 
   '@types/react-dom@18.3.0':
     dependencies:

@@ -3,8 +3,8 @@
 ### A simple Node.js command line App printing a colorful box of hashtags in Terminal:
 - `node index.js` prints a default size box in a random color and its hex code inside;
 - `node index.js <color>` prints a default size box in a specified color (see color formats below) and its hex code inside;
-- `node index.js <light/dark/bright>` prints a default size box in a random color in a specified luminosity with its hex name inside and luminosity input underneath;
-- `node index.js <light/dark/bright> <color>` prints a default size box in a specified color in a specified luminosity with its hex name inside and luminosity input underneath;
+- `node index.js <light/dark/bright>` prints a default size box in a random color in a specified luminosity with its hex code inside and luminosity input underneath;
+- `node index.js <light/dark/bright> <color>` prints a default size box in a specified color in a specified luminosity with its hex code inside and luminosity input underneath;
 - `node index.js <WWxHH>` prints a box of specified size (eg. 02x20) in a random color;
 - `node index.js <WWxHH color>` prints a box of specified size (eg. 02x20) in a specified color;
 - `node index.js <WWxHH luminosity>` prints a box of specified size (eg. 02x20) in a random color in a specified luminosity and its input underneath;

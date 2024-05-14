@@ -51,8 +51,8 @@ const createBox = (getBox, getColor) => {
 newBox = standardBox;
   }
   else{
-    // newBox = standardBox + luminosityText;
-    newBox = standardBox;
+    newBox = standardBox + luminosityText;
+    // newBox = standardBox;
   }
 } 
   else{
@@ -60,8 +60,8 @@ newBox = standardBox;
     newBox = userBox;
     }
     else{
-      // newBox = userBox + luminosityText;
-      newBox = userBox;
+      newBox = userBox + luminosityText;
+      // newBox = userBox;
     }
   }
   

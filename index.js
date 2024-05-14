@@ -14,7 +14,7 @@ const defaultBox = {
   topBottomHeight: 3,
   boxWidth: null,
   boxHeight: null,
-  luminosity: null,
+  luminosity: '',
   sideBorder: 5,
   textSpace: 7,
   spaceChar: ' ',
@@ -81,13 +81,13 @@ const createBox = (getBox, getColor) => {
   );
 
   if ((getBox.boxWidth && getBox.boxHeight) === null) {
-    if (defaultBox.luminosity === null) {
+    if (!defaultBox.luminosity) {
       newBox = standardBox;
     } else {
       newBox = standardBox + luminosityText;
     }
   } else {
-    if (defaultBox.luminosity === null) {
+    if (!defaultBox.luminosity) {
       newBox = userBox;
     } else {
       newBox = userBox + luminosityText;
